@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Questão 4</title>
+</head>
+<body>
+
+    <h1>Calculadora do IMC</h1>
+
+    <div class="container">
+        <label for="peso">Peso (kg):</label>
+        <input type="text" id="peso" placeholder="Digite seu peso" required>
+
+        <label for="altura">Altura (m):</label>
+        <input type="text" id="altura" placeholder="Digite sua altura (ex: 1.75)" required>
+
+        <button onclick="calcularIMC()">Calcular IMC</button>
+
+        <div id="resultado" class="result"></div>
+    </div>
+
+    <script>
+        function calcularIMC() {
+            var peso = parseFloat(document.getElementById('peso').value.replace(',', '.'));
+            var altura = parseFloat(document.getElementById('altura').value.replace(',', '.'));
+
+    
+            if (isNaN(peso) || isNaN(altura) || peso <= 0 || altura <= 0) {
+                document.getElementById('resultado').innerHTML = 
+                    '<span class="error">Por favor, insira valores válidos para peso e altura.</span>';
+                return;
+            }
+
+           
+            var imc = peso / (altura * altura);
+            imc = imc.toFixed(2); 
+            
+
+            var classificacao = '';
+            if (imc < 18.5) {
+                classificacao = 'Abaixo do peso';
+            } else if (imc >= 18.5 && imc < 24.9) {
+                classificacao = 'Peso normal';
+            } else if (imc >= 25 && imc < 29.9) {
+                classificacao = 'Sobrepeso';
+            } else if (imc >= 30 && imc < 39.9) {
+                classificacao = 'Obesidade';
+            } else {
+                classificacao = 'Obesidade grave';
+            }
+
+
+            document.getElementById('resultado').innerHTML = 
+                'Seu IMC é: <span>' + imc + '</span><br>' +
+                'Classificação: <span>' + classificacao + '</span>';
+        }
+    </script>
+      
+      <style>
+        body {
+            font-family: Georgia;
+            background-color: #1b4b63;
+            color: #0f404b;
+            padding: 25px;
+            text-align: center;
+            font-size: 18px;
+            margin: 80px;
+        
+        }
+
+        h1 {
+            color: #f6f0f0;
+        }
+
+        .container {
+            background-color: #74b9dc;
+            padding: 30px;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            border: 4px solid #2889ca;
+            border-radius: 150px;
+        }
+
+        input[type="text"], button {
+            width: 90%;
+            padding: 10px;
+            margin: 15px 0;
+            font-size: 18px;
+            border: 3px solid #2889ca;
+            border-radius: 25px;
+            
+        }
+
+        button {
+            background-color: #0e829f;
+            color: white;
+        }
+
+
+        .result {
+            font-size: 18px;
+            font-family: Georgia;
+            color: #0c2e3a;
+        }
+
+    
+    </style>
+
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <title>Questão 3</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <header>
+        <h1>Formulário de Contato</h1>
+    </header>
+    
+    <form id="contatosForm">
+        <label for="nome">Digite seu nome:</label><br><br>
+        <input type="text" id="nome" name="nome" placeholder="Nome:" required><br><br>
+        
+        <label for="email">Digite seu email:</label><br><br>
+        <input type="email" id="email" name="email" placeholder="Email:" required><br><br>
+        
+        <label for="mensagem">Digite sua mensagem:</label><br><br>
+        <textarea id="mensagem" name="mensagem" placeholder="Mensagem:" required></textarea><br><br>
+        
+        <button type="submit">Clique aqui</button>
+    </form>
+    
+    <p id="feedback"></p>
+
+    <style>
+        body {
+            background-color: rgb(188, 193, 177);
+            border: 10px solid #000000;
+            min-height: 95vh;
+            
+        }
+
+        h1 {
+            color: rgb(84, 80, 80);
+            font-family: Georgia;
+            text-align: center;
+            padding: 30px;
+        }
+
+
+        body{
+            color: rgb(0, 0, 0);
+            font-family: Georgia;
+            text-align: center;
+            font-size: 18px;
+            
+         }
+
+        textarea {
+            width: 300px;
+            height: 100px;
+            resize: none;
+            font-family: Georgia;
+            font-size: 16px;
+        }
+
+        button{
+         font-size: 16px;
+        }
+    </style>
+
+    <script>
+        document.getElementById('contatosForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+
+            
+            var nome = document.getElementById('nome').value;
+            var email = document.getElementById('email').value;
+            var mensagem = document.getElementById('mensagem').value;
+
+            
+            if (nome.trim() == '' || email.trim() == '' || mensagem.trim() == '') {
+                document.getElementById('feedback').textContent = 'Por favor, preencha todos os campos.';
+            } else {
+                var feedbackMessage = 'Olá, ' + nome + '! Obrigada por sua mensagem. Bem vindo(a) a página principal.';
+                document.getElementById('feedback').textContent = feedbackMessage;
+            }
+        });
+    </script>
+</body>
+</html>
